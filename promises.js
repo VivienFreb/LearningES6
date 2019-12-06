@@ -16,14 +16,14 @@ let get = function (url) {
     })
 };
 
-let getPosts = function () {
-    return get('https://jsonplaceholder.typicode.com/users').then(function (response) {
-        let users = JSON.parse(response);
-        return get('https://jsonplaceholder.typicode.com/posts?userId=' + users[0].id)
-    }).then(function (response) {
-        return JSON.parse(response);
-    })
+let getPosts = async function () {
+    let response;
+    response = await get('https://jsonplaceholder.typicode.com/usears');
+    let users = JSON.parse(response);
+    response = await get('https://jsonplaceholder.typicode.com/posts?userId=' + users[0].id);
+    return JSON.parse(response);
 };
+
 
 getPosts().then(function (posts) {
     console.log('Le premier article : ', posts[0]);
